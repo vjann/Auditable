@@ -2,6 +2,7 @@ package com.example.auditable;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ResultsActivity extends AppCompatActivity {
+    public static final String results_debug = "Results Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +59,16 @@ public class ResultsActivity extends AppCompatActivity {
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         p.weight = 1;
 
+        Intent prev_intent = getIntent();
+        String t_input = prev_intent.getStringExtra("TIME");
+        Log.d(results_debug, t_input);
+
         for (int i = 0; i < results.size(); i++) {
             ArrayList<String> strings = results.get(i);
             // For each row, have a 2 element vert. Linear Layout, where top is horiz. Linear Layout containing most info, bottom is description
-
             LinearLayout middle = new LinearLayout(this);
+
+            Log.d(results_debug, "start of loop for row: " + i);
             coursesList.add(middle);
             middle.setOrientation(LinearLayout.VERTICAL);
             middle.setLayoutParams(p);
